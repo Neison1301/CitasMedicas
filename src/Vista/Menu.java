@@ -1,9 +1,15 @@
 package Vista;
 
+import Clases.Ndoctor;
+
 public class Menu extends javax.swing.JFrame {
+
+    Ndoctor ndoctor = new Ndoctor(new int[100], new String[100], new String[100], new String[100], new String[100], new boolean[100], new String[100]);
 
     public Menu() {
         initComponents();
+
+        ndoctor.actualizarCantidadDoctores(lblDoctores);
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +34,8 @@ public class Menu extends javax.swing.JFrame {
         menu16 = new Label.Menu();
         menu17 = new Label.Menu();
         menu18 = new Label.Menu();
+        lblDoctores = new javax.swing.JLabel();
+        lblRegistrarDoctor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -86,6 +94,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("  Cerrar Sesion");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         menu1.add(jLabel4);
         jLabel4.setBounds(0, 450, 110, 30);
 
@@ -117,6 +130,22 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(menu17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 170, 60));
 
         menu18.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblDoctores.setBackground(new java.awt.Color(255, 255, 255));
+        lblDoctores.setToolTipText("");
+        menu18.add(lblDoctores);
+        lblDoctores.setBounds(10, 20, 30, 30);
+
+        lblRegistrarDoctor.setFont(new java.awt.Font("Cambria", 3, 14)); // NOI18N
+        lblRegistrarDoctor.setText("                RegistrarDoctor");
+        lblRegistrarDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRegistrarDoctorMouseClicked(evt);
+            }
+        });
+        menu18.add(lblRegistrarDoctor);
+        lblRegistrarDoctor.setBounds(0, 0, 160, 60);
+
         jPanel1.add(menu18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 170, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,16 +162,36 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+public void actualizarCantidadDoctores(String cantidad) {
+        lblDoctores.setText(cantidad);
+    }
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
 
         Pacientes pacientes = new Pacientes();
-        
+
         pacientes.setVisible(true);
-        
+
         this.dispose();
 
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+
+        IniciarSesion inciarSesion = new IniciarSesion();
+
+        inciarSesion.setVisible(true);
+
+        this.dispose();
+
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void lblRegistrarDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarDoctorMouseClicked
+        RegistrarDoctor registrarDoctor = new RegistrarDoctor();
+
+        registrarDoctor.setVisible(true);
+
+        this.dispose();    }//GEN-LAST:event_lblRegistrarDoctorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -189,6 +238,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblDoctores;
+    private javax.swing.JLabel lblRegistrarDoctor;
     private Label.Menu menu1;
     private Label.Menu menu14;
     private Label.Menu menu16;

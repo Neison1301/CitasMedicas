@@ -86,52 +86,55 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jSeparator56" min="-2" pref="245" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="BtnRegresarInicio1" min="-2" pref="124" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jbregistrar" min="-2" pref="124" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="tfCorreo" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                  <Component id="LblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jSeparator53" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                                  <Component id="LblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tfDni" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                              <Component id="lblDni" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSeparator52" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                              <Component id="lblRegistrarDoctor" alignment="0" min="-2" pref="232" max="-2" attributes="0"/>
-                              <Component id="tfTelefono" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LlbNombres" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="tfNombre" alignment="1" min="-2" pref="164" max="-2" attributes="0"/>
-                                          <Component id="jSeparator55" alignment="1" min="-2" pref="164" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jSeparator56" min="-2" pref="245" max="-2" attributes="0"/>
+                                      <Component id="tfCorreo" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                      <Component id="LblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jSeparator53" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Component id="LblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfDni" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Component id="lblDni" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jSeparator52" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Component id="lblRegistrarDoctor" alignment="0" min="-2" pref="232" max="-2" attributes="0"/>
+                                      <Component id="tfTelefono" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="LlbNombres" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="tfNombre" alignment="1" min="-2" pref="164" max="-2" attributes="0"/>
+                                                  <Component id="jSeparator55" alignment="1" min="-2" pref="164" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="LblEspecialidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="LblGenero" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jSeparator57" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                              <Component id="LlbApellidos" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                              <Component id="tfapellidos" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="LblEspecialidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LblGenero" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jSeparator57" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                                      <Component id="LlbApellidos" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <Component id="tfapellidos" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfEspecialidad" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                                      <Component id="jSeparator58" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfEspecialidad" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                              <Component id="jSeparator58" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="cbGenero" min="-2" pref="164" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="cbGenero" min="-2" pref="164" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="BtnRegresarInicio1" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jbregistrar" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

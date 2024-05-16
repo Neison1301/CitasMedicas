@@ -1,8 +1,11 @@
 package Clases;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Ndoctor extends CitasMedicas {
@@ -105,7 +108,7 @@ public class Ndoctor extends CitasMedicas {
                 writer.write(apellidoDoctor[i] + ", ");
                 writer.write(telefonoDoctor[i] + ", ");
                 writer.write(emailDoctor[i] + ", ");
-                writer.write(generoDoctor[i] ? "Masculino" : "Femenino" +", ");
+                writer.write(generoDoctor[i] ? "Masculino" : "Femenino" + ", ");
                 writer.write(especialidadDoctor[i] + ", ");
                 writer.newLine();
             }
@@ -113,6 +116,32 @@ public class Ndoctor extends CitasMedicas {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al escribir en el archivo.");
         }
+    }
+
+    private int obtenerCantidadDoctores() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("RegistroDoctor.txt"));
+            String line = reader.readLine();
+            reader.close();
+            if (line != null) {
+                return Integer.parseInt(line);
+            } else {
+                return 0; // Si la línea es nula, devuelve 0 como cantidad predeterminada
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0; // En caso de error, devuelve 0 como cantidad predeterminada
+        }
+    }
+
+    public void actualizarCantidadDoctores(JLabel lblDoctores) {
+        Integer cantidadDoctores = obtenerCantidadDoctores();
+        if (cantidadDoctores != null) {
+            lblDoctores.setText(String.valueOf(cantidadDoctores));
+        } else {
+            lblDoctores.setText("0");
+        }
+
     }
 
 }
