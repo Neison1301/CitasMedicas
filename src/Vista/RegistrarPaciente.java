@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 public class RegistrarPaciente extends javax.swing.JFrame {
 
+    Menu menu = new Menu();
     NPacientes nPacientes = new NPacientes(new int[100], new String[100], new String[100], new String[100], new String[100], new int[100], new boolean[100]);
 
     public RegistrarPaciente() {
@@ -332,18 +333,15 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         String telefono = tfTelefono.getText();
         String email = tfCorreo.getText();
         int edad = Integer.parseInt(tfedad.getText());
-        boolean genero = cbGenero.getSelectedItem().toString().equals("Masculino"); 
-        
+        boolean genero = cbGenero.getSelectedItem().toString().equals("Masculino");
+
         nPacientes.agregarPaciente(id, nombre, apellido, telefono, email, edad, genero);
-        
+
         nPacientes.escribirDatosEnArchivo("RegistroPaciente.txt");
 
         JOptionPane.showMessageDialog(null, "Paciente registrado exitosamente.");
 
-        Pacientes paciente = new Pacientes();
-
-        paciente.setVisible(true);
-
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbregistrarActionPerformed
     /*private void limpiarCampos() {
@@ -356,9 +354,7 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         cbGenero.setSelectedIndex(0); 
     }*/
     private void BtnRegresarInicio1jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarInicio1jButton1ActionPerformed
-        Pacientes paciente = new Pacientes();
-
-        paciente.setVisible(true);
+        menu.setVisible(true);
 
         this.dispose();
     }//GEN-LAST:event_BtnRegresarInicio1jButton1ActionPerformed

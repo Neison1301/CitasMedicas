@@ -6,117 +6,121 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class NPacientes extends CitasMedicas {
+    String registroPaciente = "C:\\Users\\NEISON\\Downloads\\CitasMedicas-master\\src\\Almacenamiento\\RegistroPaciente.txt";
 
-    String rutaArchivo = "src/Almacenamiento/RegistroPaciente.txt";
-    
-    private int cantidadActual = 0;
-
+    private int cantidadActual;
     private int[] idPaciente;
     private String[] nombrePaciente;
     private String[] apellidoPaciente;
     private String[] telefonoPaciente;
     private String[] emailPaciente;
-    private int[] edadPaciente;
     private boolean[] generoPaciente;
+
+    public NPacientes(int maxPacientes) {
+        this.cantidadActual = 0;
+        this.idPaciente = new int[maxPacientes];
+        this.nombrePaciente = new String[maxPacientes];
+        this.apellidoPaciente = new String[maxPacientes];
+        this.telefonoPaciente = new String[maxPacientes];
+        this.emailPaciente = new String[maxPacientes];
+        this.generoPaciente = new boolean[maxPacientes];
+    }
+
+    public String getRegistroPaciente() {
+        return registroPaciente;
+    }
+
+    public void setRegistroPaciente(String registroPaciente) {
+        this.registroPaciente = registroPaciente;
+    }
+
+    public int getCantidadActual() {
+        return cantidadActual;
+    }
+
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
 
     public int[] getIdPaciente() {
         return idPaciente;
-    }
-
-    public String[] getNombrePaciente() {
-        return nombrePaciente;
-    }
-
-    public String[] getApellidoPaciente() {
-        return apellidoPaciente;
-    }
-
-    public String[] getTelefonoPaciente() {
-        return telefonoPaciente;
-    }
-
-    public String[] getEmailPaciente() {
-        return emailPaciente;
-    }
-
-    public int[] getEdadPaciente() {
-        return edadPaciente;
-    }
-
-    public boolean[] getGeneroPaciente() {
-        return generoPaciente;
     }
 
     public void setIdPaciente(int[] idPaciente) {
         this.idPaciente = idPaciente;
     }
 
+    public String[] getNombrePaciente() {
+        return nombrePaciente;
+    }
+
     public void setNombrePaciente(String[] nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
+    }
+
+    public String[] getApellidoPaciente() {
+        return apellidoPaciente;
     }
 
     public void setApellidoPaciente(String[] apellidoPaciente) {
         this.apellidoPaciente = apellidoPaciente;
     }
 
+    public String[] getTelefonoPaciente() {
+        return telefonoPaciente;
+    }
+
     public void setTelefonoPaciente(String[] telefonoPaciente) {
         this.telefonoPaciente = telefonoPaciente;
+    }
+
+    public String[] getEmailPaciente() {
+        return emailPaciente;
     }
 
     public void setEmailPaciente(String[] emailPaciente) {
         this.emailPaciente = emailPaciente;
     }
 
-    public void setEdadPaciente(int[] edadPaciente) {
-        this.edadPaciente = edadPaciente;
+    public boolean[] getGeneroPaciente() {
+        return generoPaciente;
     }
 
     public void setGeneroPaciente(boolean[] generoPaciente) {
         this.generoPaciente = generoPaciente;
     }
 
-    public NPacientes(int[] idPaciente, String[] nombrePaciente, String[] apellidoPaciente, String[] telefonoPaciente, String[] emailPaciente, int[] edadPaciente, boolean[] generoPaciente) {
-        this.idPaciente = idPaciente;
-        this.nombrePaciente = nombrePaciente;
-        this.apellidoPaciente = apellidoPaciente;
-        this.telefonoPaciente = telefonoPaciente;
-        this.emailPaciente = emailPaciente;
-        this.edadPaciente = edadPaciente;
-        this.generoPaciente = generoPaciente;
+    public String getRegistroArchivo() {
+        return registroArchivo;
     }
-    
 
-    public void agregarPaciente(int id, String nombre, String apellido, String telefono, String email, int edad, boolean genero) {
+    public void setRegistroArchivo(String registroArchivo) {
+        this.registroArchivo = registroArchivo;
+    }
 
-        if (cantidadActual < 99999999) {
+    public void agregarPaciente(int id, String nombre, String apellido, String telefono, String email, boolean genero) {
+        if (cantidadActual < idPaciente.length) {
             idPaciente[cantidadActual] = id;
             nombrePaciente[cantidadActual] = nombre;
             apellidoPaciente[cantidadActual] = apellido;
             telefonoPaciente[cantidadActual] = telefono;
             emailPaciente[cantidadActual] = email;
-            edadPaciente[cantidadActual] = edad;
             generoPaciente[cantidadActual] = genero;
             cantidadActual++;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede agregar más pacientes, límite alcanzado.");
         }
     }
 
-    public void escribirDatosEnArchivo(String Archivo) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo,true));
+    @Override
+    public void escribirDatosEnArchivo() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(registroPaciente, true))) {
             for (int i = 0; i < cantidadActual; i++) {
-                writer.write(idPaciente[i] + ", ");
-                writer.write(nombrePaciente[i] + ", ");
-                writer.write(apellidoPaciente[i] + ", ");
-                writer.write(telefonoPaciente[i] + ", ");
-                writer.write(emailPaciente[i] + ", ");
-                writer.write(edadPaciente[i] + ", ");
-                writer.write(generoPaciente[i] ? "Masculino" : "Femenino");
-                writer.newLine();
+                writer.write(String.format("%d, %s, %s, %s, %s, %s%n", idPaciente[i], nombrePaciente[i], apellidoPaciente[i],
+                        telefonoPaciente[i], emailPaciente[i], generoPaciente[i] ? "Masculino" : "Femenino"));
             }
-            writer.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al escribir en el archivo.");
+            JOptionPane.showMessageDialog(null, "Error al escribir en el archivo: " + e.getMessage());
         }
     }
-
 }

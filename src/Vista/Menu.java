@@ -9,7 +9,6 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
 
-        ndoctor.actualizarCantidadDoctores(lblDoctores);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,9 +32,9 @@ public class Menu extends javax.swing.JFrame {
         menu14 = new Label.Menu();
         menu16 = new Label.Menu();
         menu17 = new Label.Menu();
+        tfCantidadDoctores = new javax.swing.JLabel();
         menu18 = new Label.Menu();
-        lblDoctores = new javax.swing.JLabel();
-        lblRegistrarDoctor = new javax.swing.JLabel();
+        lblRegistrarPacientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -127,24 +126,30 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(menu16, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 180, 90));
 
         menu17.setBackground(new java.awt.Color(255, 255, 255));
+
+        tfCantidadDoctores.setFont(new java.awt.Font("Cambria", 3, 18)); // NOI18N
+        tfCantidadDoctores.setText("Doctores");
+        tfCantidadDoctores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfCantidadDoctoresMouseClicked(evt);
+            }
+        });
+        menu17.add(tfCantidadDoctores);
+        tfCantidadDoctores.setBounds(60, 0, 110, 60);
+
         jPanel1.add(menu17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 170, 60));
 
         menu18.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblDoctores.setBackground(new java.awt.Color(255, 255, 255));
-        lblDoctores.setToolTipText("");
-        menu18.add(lblDoctores);
-        lblDoctores.setBounds(10, 20, 30, 30);
-
-        lblRegistrarDoctor.setFont(new java.awt.Font("Cambria", 3, 14)); // NOI18N
-        lblRegistrarDoctor.setText("                RegistrarDoctor");
-        lblRegistrarDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRegistrarPacientes.setFont(new java.awt.Font("Cambria", 3, 18)); // NOI18N
+        lblRegistrarPacientes.setText("Pacientes");
+        lblRegistrarPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRegistrarDoctorMouseClicked(evt);
+                lblRegistrarPacientesMouseClicked(evt);
             }
         });
-        menu18.add(lblRegistrarDoctor);
-        lblRegistrarDoctor.setBounds(0, 0, 160, 60);
+        menu18.add(lblRegistrarPacientes);
+        lblRegistrarPacientes.setBounds(60, 0, 110, 60);
 
         jPanel1.add(menu18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 170, 60));
 
@@ -162,8 +167,9 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void actualizarCantidadDoctores(String cantidad) {
-        lblDoctores.setText(cantidad);
+
+    public void actualizarCantidadDoctores(int cantidad) {
+        tfCantidadDoctores.setText(String.valueOf(ndoctor.obtenerCantidadDoctores()));
     }
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -186,12 +192,18 @@ public void actualizarCantidadDoctores(String cantidad) {
 
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void lblRegistrarDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarDoctorMouseClicked
-        RegistrarDoctor registrarDoctor = new RegistrarDoctor();
+    private void lblRegistrarPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarPacientesMouseClicked
 
-        registrarDoctor.setVisible(true);
+        RegistrarPaciente registrarse = new RegistrarPaciente();
 
-        this.dispose();    }//GEN-LAST:event_lblRegistrarDoctorMouseClicked
+        registrarse.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_lblRegistrarPacientesMouseClicked
+
+    private void tfCantidadDoctoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfCantidadDoctoresMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCantidadDoctoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -238,8 +250,7 @@ public void actualizarCantidadDoctores(String cantidad) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblDoctores;
-    private javax.swing.JLabel lblRegistrarDoctor;
+    private javax.swing.JLabel lblRegistrarPacientes;
     private Label.Menu menu1;
     private Label.Menu menu14;
     private Label.Menu menu16;
@@ -249,5 +260,6 @@ public void actualizarCantidadDoctores(String cantidad) {
     private Label.Menu menu3;
     private Label.Menu menu4;
     private Label.Menu menu8;
+    private javax.swing.JLabel tfCantidadDoctores;
     // End of variables declaration//GEN-END:variables
 }

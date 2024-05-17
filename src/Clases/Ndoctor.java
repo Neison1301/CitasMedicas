@@ -1,19 +1,13 @@
 package Clases;
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Ndoctor extends CitasMedicas {
-
-    String registrodoctor = "src/Almacenamiento/RegistroDoctor.txt";
+    private String registrodoctor = "C:\\Users\\NEISON\\Downloads\\CitasMedicas-master\\src\\Almacenamiento\\RegistroDoctor.txt";
 
     private int cantidadActual;
-
     private int[] idDoctor;
     private String[] nombreDoctor;
     private String[] apellidoDoctor;
@@ -22,72 +16,100 @@ public class Ndoctor extends CitasMedicas {
     private boolean[] generoDoctor;
     private String[] especialidadDoctor;
 
+    public Ndoctor(int maxDoctores) {
+        this.cantidadActual = 0;
+        this.idDoctor = new int[maxDoctores];
+        this.nombreDoctor = new String[maxDoctores];
+        this.apellidoDoctor = new String[maxDoctores];
+        this.telefonoDoctor = new String[maxDoctores];
+        this.emailDoctor = new String[maxDoctores];
+        this.generoDoctor = new boolean[maxDoctores];
+        this.especialidadDoctor = new String[maxDoctores];
+    }
+
+    public String getRegistrodoctor() {
+        return registrodoctor;
+    }
+
+    public void setRegistrodoctor(String registrodoctor) {
+        this.registrodoctor = registrodoctor;
+    }
+
+    public int getCantidadActual() {
+        return cantidadActual;
+    }
+
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
+
     public int[] getIdDoctor() {
         return idDoctor;
-    }
-
-    public String[] getNombreDoctor() {
-        return nombreDoctor;
-    }
-
-    public String[] getApellidoDoctor() {
-        return apellidoDoctor;
-    }
-
-    public String[] getTelefonoDoctor() {
-        return telefonoDoctor;
-    }
-
-    public String[] getEmailDoctor() {
-        return emailDoctor;
-    }
-
-    public boolean[] getGeneroDoctor() {
-        return generoDoctor;
     }
 
     public void setIdDoctor(int[] idDoctor) {
         this.idDoctor = idDoctor;
     }
 
+    public String[] getNombreDoctor() {
+        return nombreDoctor;
+    }
+
     public void setNombreDoctor(String[] nombreDoctor) {
         this.nombreDoctor = nombreDoctor;
+    }
+
+    public String[] getApellidoDoctor() {
+        return apellidoDoctor;
     }
 
     public void setApellidoDoctor(String[] apellidoDoctor) {
         this.apellidoDoctor = apellidoDoctor;
     }
 
+    public String[] getTelefonoDoctor() {
+        return telefonoDoctor;
+    }
+
     public void setTelefonoDoctor(String[] telefonoDoctor) {
         this.telefonoDoctor = telefonoDoctor;
+    }
+
+    public String[] getEmailDoctor() {
+        return emailDoctor;
     }
 
     public void setEmailDoctor(String[] emailDoctor) {
         this.emailDoctor = emailDoctor;
     }
 
+    public boolean[] getGeneroDoctor() {
+        return generoDoctor;
+    }
+
     public void setGeneroDoctor(boolean[] generoDoctor) {
         this.generoDoctor = generoDoctor;
+    }
 
+    public String[] getEspecialidadDoctor() {
+        return especialidadDoctor;
     }
 
     public void setEspecialidadDoctor(String[] especialidadDoctor) {
         this.especialidadDoctor = especialidadDoctor;
     }
 
-    public Ndoctor(int[] idDoctor, String[] nombreDoctor, String[] apellidoDoctor, String[] telefonoDoctor, String[] emailDoctor, boolean[] generoDoctor, String[] especialidadDoctor) {
-        this.idDoctor = idDoctor;
-        this.nombreDoctor = nombreDoctor;
-        this.apellidoDoctor = apellidoDoctor;
-        this.telefonoDoctor = telefonoDoctor;
-        this.emailDoctor = emailDoctor;
-        this.generoDoctor = generoDoctor;
-        this.especialidadDoctor = especialidadDoctor;
+    public String getRegistroArchivo() {
+        return registroArchivo;
     }
 
-    public void agregarDoctor(int id, String nombre, String apellido, String telefono, String email, boolean genero, String especialidad) {
+    public void setRegistroArchivo(String registroArchivo) {
+        this.registroArchivo = registroArchivo;
+    }
 
-        if (cantidadActual < 99999999) {
+
+    public void agregarDoctor(int id, String nombre, String apellido, String telefono, String email, boolean genero, String especialidad) {
+        if (cantidadActual < idDoctor.length) {
             idDoctor[cantidadActual] = id;
             nombreDoctor[cantidadActual] = nombre;
             apellidoDoctor[cantidadActual] = apellido;
@@ -96,52 +118,20 @@ public class Ndoctor extends CitasMedicas {
             generoDoctor[cantidadActual] = genero;
             especialidadDoctor[cantidadActual] = especialidad;
             cantidadActual++;
-        }
-    }
-
-    public void escribirDatosEnArchivo(String Archivo) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(registrodoctor, true));
-            for (int i = 0; i < cantidadActual; i++) {
-                writer.write(idDoctor[i] + ", ");
-                writer.write(nombreDoctor[i] + ", ");
-                writer.write(apellidoDoctor[i] + ", ");
-                writer.write(telefonoDoctor[i] + ", ");
-                writer.write(emailDoctor[i] + ", ");
-                writer.write(generoDoctor[i] ? "Masculino" : "Femenino" + ", ");
-                writer.write(especialidadDoctor[i] + ", ");
-                writer.newLine();
-            }
-            writer.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al escribir en el archivo.");
-        }
-    }
-
-    private int obtenerCantidadDoctores() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("RegistroDoctor.txt"));
-            String line = reader.readLine();
-            reader.close();
-            if (line != null) {
-                return Integer.parseInt(line);
-            } else {
-                return 0; // Si la línea es nula, devuelve 0 como cantidad predeterminada
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return 0; // En caso de error, devuelve 0 como cantidad predeterminada
-        }
-    }
-
-    public void actualizarCantidadDoctores(JLabel lblDoctores) {
-        Integer cantidadDoctores = obtenerCantidadDoctores();
-        if (cantidadDoctores != null) {
-            lblDoctores.setText(String.valueOf(cantidadDoctores));
         } else {
-            lblDoctores.setText("0");
+            JOptionPane.showMessageDialog(null, "No se puede agregar más doctores, límite alcanzado.");
         }
-
     }
 
+    @Override
+    public void escribirDatosEnArchivo() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(registrodoctor, true))) {
+            for (int i = 0; i < cantidadActual; i++) {
+                writer.write(String.format("%d, %s, %s, %s, %s, %s, %s%n", idDoctor[i], nombreDoctor[i], apellidoDoctor[i],
+                        telefonoDoctor[i], emailDoctor[i], generoDoctor[i] ? "Masculino" : "Femenino", especialidadDoctor[i]));
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir en el archivo: " + e.getMessage());
+        }
+    }
 }

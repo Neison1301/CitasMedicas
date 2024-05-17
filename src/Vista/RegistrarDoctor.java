@@ -1,14 +1,19 @@
 package Vista;
 
 import Clases.Ndoctor;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 public class RegistrarDoctor extends javax.swing.JFrame {
 
-    Ndoctor ndoctor = new Ndoctor(new int[100], new String[100], new String[100], new String[100], new String[100], new boolean[100], new String[100]);
+    Menu menu;
 
-    public RegistrarDoctor() {
+    Ndoctor ndoctor;
+
+    public RegistrarDoctor(Menu menu) {
         initComponents();
+        this.menu = menu;
+        this.ndoctor = menu.ndoctor;
     }
 
     @SuppressWarnings("unchecked")
@@ -289,27 +294,19 @@ public class RegistrarDoctor extends javax.swing.JFrame {
     }//GEN-LAST:event_tfCorreojTextField5ActionPerformed
 
     private void BtnRegresarInicio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRegresarInicio1MouseClicked
-        Citas citas = new Citas();
-
-        citas.setVisible(true);
-
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnRegresarInicio1MouseClicked
 
     private void BtnRegresarInicio1jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarInicio1jButton1ActionPerformed
-        Pacientes paciente = new Pacientes();
-
-        paciente.setVisible(true);
+        menu.setVisible(true);
 
         this.dispose();
     }//GEN-LAST:event_BtnRegresarInicio1jButton1ActionPerformed
 
     private void jbregistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbregistrarMouseClicked
-
-        Menu menu = new Menu();
-        
         menu.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_jbregistrarMouseClicked
 
@@ -322,22 +319,21 @@ public class RegistrarDoctor extends javax.swing.JFrame {
         String correo = tfCorreo.getText();
         boolean genero = cbGenero.getSelectedItem().toString().equals("Masculino");
         String especialidad = tfEspecialidad.getText();
+        
+        try {
+            ndoctor.agregarDoctor(dni, nombre, apellido, telefono, correo, genero, especialidad);
+            ndoctor.escribirDatosEnArchivo();
+            menu.actualizarCantidadDoctores(ndoctor.obtenerCantidadDoctores());
+            // Actualiza el campo de texto de cantidad de doctores en el menú principal
+            String cantidadDoctores = String.valueOf(menu.ndoctor.obtenerCantidadDoctores());
+            menu.tfCantidadDoctores.setText(cantidadDoctores);
+            JOptionPane.showMessageDialog(null, "Doctor registrado exitosamente.");
+            this.dispose();
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar el doctor: " + e.getMessage());
+        }
 
-        ndoctor.agregarDoctor(dni, nombre, apellido, telefono, correo, genero, especialidad);
 
-        ndoctor.escribirDatosEnArchivo("RegistroDoctor.txt");
-
-        JOptionPane.showMessageDialog(null, "Paciente registrado exitosamente.");
-
-        String cantidadDoctores = ""; 
-        Menu menu = new Menu();
-        menu.actualizarCantidadDoctores(cantidadDoctores);
-
-        Pacientes paciente = new Pacientes();
-
-        paciente.setVisible(true);
-
-        this.dispose();
     }//GEN-LAST:event_jbregistrarActionPerformed
 
     private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
@@ -378,7 +374,9 @@ public class RegistrarDoctor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarDoctor().setVisible(true);
+                Menu menu = new Menu();
+                new RegistrarDoctor(menu).setVisible(true);
+
             }
         });
     }
